@@ -28,5 +28,5 @@ export class NewArticlePage {
         await this.ArticleTag.fill(tag);
 
         await this.publishArticleBtn.click();
-    }
+    }//
 }

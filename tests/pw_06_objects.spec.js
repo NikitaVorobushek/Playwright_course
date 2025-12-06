@@ -23,7 +23,7 @@ test('Регистрация юзера с объектами', async ({ page })
     await mainPage.open(url);
     await mainPage.goToRegister();
     await registerPage.registration(name, email, password);
-    // v 1.0
+    // v 1.0 //
     await expect(homePage.profileName).toContainText(user.name);
 
 });

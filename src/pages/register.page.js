@@ -23,6 +23,6 @@ export class RegisterPage {
         await this.passwordInput.fill(password);
         
         this.signupButton.click();
-    }
+    }//
 
 }

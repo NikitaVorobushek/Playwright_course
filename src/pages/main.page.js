@@ -13,6 +13,6 @@ export class MainPage {
 
     async open(url) {
         await this.page.goto(url);
-    }
+    }//
 
 }

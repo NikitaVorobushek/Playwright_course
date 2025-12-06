@@ -47,6 +47,6 @@ export class MyArticlePage {
     async deleteMyComment() {
         await this.deleteMyCommentBtn.click();
         await this.doDialogClick;
-    }
+    }//
 
 }

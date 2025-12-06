@@ -49,5 +49,5 @@ export class SettingsPage {
         await this.passwordInput.fill(password);
 
         await this.updateBtn.click();  
-    }
+    }//
 }

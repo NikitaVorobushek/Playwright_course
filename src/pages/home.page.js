@@ -22,5 +22,5 @@ export class HomePage {
     async logOut() {
         await this.profileName.click();
         await this.logoutBtn.click();
-    }
+    } //
 }
