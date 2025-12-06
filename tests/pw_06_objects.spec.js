@@ -13,7 +13,7 @@ const user = {
 
 const url = 'https://realworld.qa.guru/';
 
-test.only('Регистрация юзера с объектами', async ({ page }) => {
+test('Регистрация юзера с объектами', async ({ page }) => {
     const {name, password, email} = user;
 
     const homePage = new HomePage(page);
