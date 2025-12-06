@@ -1,26 +1,30 @@
 export class HomePage {
 // техническое описание страницы
-
-    constructor(page) {
+constructor(page) {
         this.page = page;
 
-        this.profileName = page.locator('.dropdown-toggle');
-
+        this.profileBtn = page.getByRole('link', { name: 'Profile' });
         this.settingsBtn = page.getByRole('link', { name: 'Settings' });
+
         this.logoutBtn = page.getByRole('link', { name: 'Logout' });
+        this.newArticleBtn = page.getByRole('link', { name: 'New Article' });
     }
 
     async getProfileName() {
-        return this.profileName;
+        return this.profileBtn;
     }
 
     async goToSettings() {
-        await this.profileName.click();
+        await this.profileBtn.click();
         await this.settingsBtn.click();
     }
 
     async logOut() {
-        await this.profileName.click();
+        await this.profileBtn.click();
         await this.logoutBtn.click();
-    } //
+    }
+
+    async gotoNewArticle() {
+        await this.newArticleBtn.click();
+    }
 }

@@ -3,7 +3,6 @@ export class NewArticlePage {
     constructor(page) {
         this.page = page;
 
-        this.newArticleBtn = page.getByRole('link', { name: 'New Article' });
         this.publishArticleBtn = page.getByRole('button', {name: 'Publish Article' });
 
         this.ArticleTitle = page.getByRole('textbox', {name: 'Article Title' });
@@ -28,5 +27,5 @@ export class NewArticlePage {
         await this.ArticleTag.fill(tag);
 
         await this.publishArticleBtn.click();
-    }//
+    }
 }

@@ -1,10 +1,10 @@
 export class RegisterPage {
 // техническое описание страницы
     constructor (page) {
-        
         this.page = page;
 
-        this.signupButton = page.getByRole('button', { name: 'Sign up' });
+        this.signupBtn = page.getByRole('link', { name: 'Sign up' });
+
         this.emailInput = page.getByRole('textbox', { name: 'Email' });
         this.nameInput = page.getByRole('textbox', { name: 'Your Name' });
         this.passwordInput =  page.getByRole('textbox', { name: 'Password' })
@@ -22,7 +22,7 @@ export class RegisterPage {
         await this.passwordInput.click();
         await this.passwordInput.fill(password);
         
-        this.signupButton.click();
-    }//
+        this.signupBtn.click();
+    }
 
 }
