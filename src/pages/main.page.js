@@ -1,24 +1,24 @@
-// export class MainPage {
-// // техническое описание страницы
+export class MainPage {
+// техническое описание страницы
 
-//     constructor(page) {
-//         this.page = page;
+    constructor(page) {
+        this.page = page;
 
-//         this.signUpLink = page.getByRole('link', { name: 'Sign up' }).describe('Registration button/link');
-//         this.loginLink = page.getByRole('link', { name: 'Login' }).describe('Login button/link');
-//     }
+        this.signUpLink = page.getByRole('link', { name: 'Sign up' }).describe('Registration button/link');
+        this.loginLink = page.getByRole('link', { name: 'Login' }).describe('Login button/link');
+    }
 
-// // бизнесовые действия со страницей
-//     async goToRegister() {
-//         this.signUpLink.click();
-//     }
+// бизнесовые действия со страницей
+    async goToRegister() {
+        this.signUpLink.click();
+    }
 
-//     async goToLogin() {
-//         await this.loginLink.click();
-//     }
+    async goToLogin() {
+        await this.loginLink.click();
+    }
 
-//     async open(url) {
-//         await this.page.goto(url);
-//     }
+    async open(url) {
+        await this.page.goto(url);
+    }
 
-// }
+}
