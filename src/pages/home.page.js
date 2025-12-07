@@ -3,15 +3,14 @@ export class HomePage {
 constructor(page) {
         this.page = page;
 
-        this.profileBtn = page.getByRole('link', { name: 'Profile' });
+        this.profileBtn = page.locator('.dropdown-toggle');
         this.settingsBtn = page.getByRole('link', { name: 'Settings' });
-
         this.logoutBtn = page.getByRole('link', { name: 'Logout' });
         this.newArticleBtn = page.getByRole('link', { name: 'New Article' });
     }
 
     async getProfileName() {
-        return this.profileBtn;
+        return await this.profileBtn.textContent();
     }
 
     async goToSettings() {

@@ -1,6 +1,7 @@
 export class EditArticlePage {
     constructor (page) {
         this.page = page;
+        
         this.ArticleTitle = page.getByRole('textbox', {name: 'Article Title' });
         this.ArticleAbout = page.getByRole('textbox', {name: 'What\'s this article about?' }); //нету
         this.ArticleTopic = page.getByRole('textbox', {name: 'Write your article (in markdown)' });
@@ -24,5 +25,5 @@ export class EditArticlePage {
 
         await this.updateArticleBtn.click();  
     }
-    //
+
 }

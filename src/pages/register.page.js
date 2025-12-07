@@ -3,12 +3,12 @@ export class RegisterPage {
     constructor (page) {
         this.page = page;
 
-        this.signupBtn = page.getByRole('link', { name: 'Sign up' });
+        this.signupBtn = page.getByRole('button', { name: 'Sign up' });
 
         this.emailInput = page.getByRole('textbox', { name: 'Email' });
         this.nameInput = page.getByRole('textbox', { name: 'Your Name' });
-        this.passwordInput =  page.getByRole('textbox', { name: 'Password' })
-        }
+        this.passwordInput =  page.getByRole('textbox', { name: 'Password' });
+    }
 
 // бизнесовые действия со страницей
     async registration(name, email, password) {

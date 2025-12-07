@@ -8,7 +8,7 @@ export class SettingsPage {
         this.nameInput = page.getByRole('textbox', { name: 'Your Name' });
         this.passwordInput =  page.getByRole('textbox', { name: 'Password' });
         this.profileName = page.locator('.dropdown-toggle');
-        }
+    }
 
 // бизнесовые действия со страницей
     async changeName(name) {  
@@ -18,7 +18,7 @@ export class SettingsPage {
         await this.updateBtn.click();  
     }
 
-    checkPrifileName() {
+    checkProfileName() {
         return this.profileName;
     }
 

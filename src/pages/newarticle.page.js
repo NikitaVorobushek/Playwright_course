@@ -12,18 +12,17 @@ export class NewArticlePage {
     }
 
     async makeNewArticle (title, about, topic, tag) {
-        await this.newArticleBtn.click();
 
         await this.ArticleTitle.click();
         await this.ArticleTitle.fill(title);
 
-        await this.ArticleTitle.click();
+        await this.ArticleAbout.click();
         await this.ArticleAbout.fill(about);
 
-        await this.ArticleTitle.click();
+        await this.ArticleTopic.click();
         await this.ArticleTopic.fill(topic);
 
-        await this.ArticleTitle.click();
+        await this.ArticleTag.click();
         await this.ArticleTag.fill(tag);
 
         await this.publishArticleBtn.click();

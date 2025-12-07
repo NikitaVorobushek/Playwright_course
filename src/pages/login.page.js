@@ -5,7 +5,7 @@ export class LoginPage {
         this.loginBtn = page.getByRole('button', { name: 'Login' });
 
         this.emailInput = page.getByRole('textbox', { name: 'Email' });
-        this.passwordInput =  page.getByRole('textbox', { name: 'Password' })
+        this.passwordInput =  page.getByRole('textbox', { name: 'Password' });
     }
 
     async login (email, password) {  
@@ -18,4 +18,4 @@ export class LoginPage {
         await this.loginBtn.click();  
     }
 
-    }
+}
