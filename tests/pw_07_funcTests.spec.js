@@ -9,7 +9,7 @@ import { EditArticlePage } from '../src/pages/editarticle.page';
 import { SettingsPage } from '../src/pages/settings.page';
 import { LoginPage } from '../src/pages/login.page';
 
-async function generateNewUser() {
+function generateNewUser() {
     const user = {
         name: faker.person.fullName(), //сгенерит фио
         email: faker.internet.email({provider: 'qa.guru'}), //сгенерит мыло
@@ -18,27 +18,38 @@ async function generateNewUser() {
     return user;
 }
 
-async function registerUser(page, user) {
-    const {name, email, password} = user;
+async function generateNewArticle() {
+    const article = {
+        title: faker.commerce.product(), //сгенерит "фрукт"
+        about: faker.commerce.productName(), //сгенерит имя товара
+        topic: faker.food.description(), //сгенерит описание блюда
+        tag: 'Реклама' //популярный тэг
+    }
+    return article;
+}
 
+const url = 'https://realworld.qa.guru/';
+
+test.describe('My tests gogo', () => {
+    let user;
+
+test.beforeEach(async ({ page }) => { 
+    user = generateNewUser();
+    
+    const {name, email, password} = user;
     const mainPage = new MainPage(page);    
     const registerPage = new RegisterPage(page);
 
     await mainPage.open(url);
     await mainPage.goToRegister();
     await registerPage.registration(name, email, password);
-}
-
-const url = 'https://realworld.qa.guru/';
+});
 
 test('Зарегистрированный пользователь может сменить имя', async ({ page }) => {
-    const user = await generateNewUser();  
     const newUserName = faker.person.fullName(); //сгенерит фио
 
     const homePage = new HomePage(page);
     const settingsPage = new SettingsPage(page);
-
-    await registerUser(page, user);
 
     await homePage.goToSettings();
     await settingsPage.changeName(newUserName);
@@ -46,7 +57,6 @@ test('Зарегистрированный пользователь может �
 });
 
 test('Зарегистрированный пользователь может сменить пароль', async ({ page }) => {
-    const user = await generateNewUser(); 
     const newPassword = faker.internet.password({ length: 10 }); //сгенерит пароль
 
     const mainPage = new MainPage(page);    
@@ -54,15 +64,13 @@ test('Зарегистрированный пользователь может �
     const loginPage = new LoginPage(page);
     const settingsPage = new SettingsPage(page);
 
-    await registerUser(page, user);
-
     await homePage.goToSettings();
     await settingsPage.changePassword(newPassword);
     await homePage.logOut();
 
     await mainPage.goToLogin();
     await loginPage.login(user.email, newPassword);
-    expect(await homePage.getProfileName()).toContain(user.name);
+    await expect(await homePage.getProfileName()).toContainText(user.name);
 });
 
 test('Зарегистрированный пользователь может создать новый пост', async ({ page }) => {
@@ -70,19 +78,11 @@ test('Зарегистрированный пользователь может �
     const homePage = new HomePage(page);
     const viewArticlePage = new ViewArticlePage(page);
 
-    const user = await generateNewUser(); 
+    const article = await generateNewArticle();
 
-    const article = {
-        title: faker.food.dish(), //сгенерит "дичь"
-        about: faker.food.ethnicCategory(), //сгенерит категорию блюда
-        topic: faker.food.description(), //сгенерит описание блюда
-        tag: 'Реклама' //популярный тэг
-    }
-
-    await registerUser(page, user);
     await homePage.gotoNewArticle();
     await newArticlePage.makeNewArticle(article.title, article.about, article.topic, article.tag);
-    expect(await viewArticlePage.checkMyArticle(article.topic));
+    await expect(await viewArticlePage.checkMyArticle()).toContainText(article.topic);
 });
 
 test('Зарегистрированный пользователь может оставить коммент к посту', async ({ page }) => {
@@ -90,20 +90,14 @@ test('Зарегистрированный пользователь может �
     const homePage = new HomePage(page);
     const viewArticlePage = new ViewArticlePage(page);
 
-    const user = await generateNewUser(); 
-    const article = {
-        title: faker.food.dish(), //сгенерит "дичь"
-        about: faker.food.ethnicCategory(), //сгенерит категорию блюда
-        topic: faker.food.description(), //сгенерит описание блюда
-        tag: 'Реклама' //популярный тэг
-    }
+    const article = await generateNewArticle();
+
     const commentText = faker.book.genre() //сгенерит коммент ввиде жанра книги
 
-    await registerUser(page, user);
     await homePage.gotoNewArticle();
     await newArticlePage.makeNewArticle(article.title, article.about, article.topic, article.tag);
     await viewArticlePage.createNewComment(commentText);
-    expect(await viewArticlePage.checkMyComment()).toContain(commentText);
+    await expect(await viewArticlePage.checkMyComment()).toContainText(commentText);
 });
 
 test('Зарегистрированный пользователь может отредактировать свой пост', async ({ page }) => {
@@ -112,21 +106,8 @@ test('Зарегистрированный пользователь может �
     const viewArticlePage = new ViewArticlePage(page);
     const editArticlePage = new EditArticlePage(page);
 
-    const user = await generateNewUser(); 
-    const article = {
-        title: faker.food.dish(), //сгенерит "дичь"
-        about: faker.food.ethnicCategory(), //сгенерит категорию блюда
-        topic: faker.food.description(), //сгенерит описание блюда
-        tag: 'Реклама' //популярный тэг
-    }
-    const newArticle = {
-        title: faker.food.dish(), //сгенерит "дичь"
-        about: faker.food.ethnicCategory(), //сгенерит категорию блюда
-        topic: faker.food.description(), //сгенерит описание блюда
-        tag: 'Реклама' //популярный тэг
-    }
-
-    await registerUser(page, user);
+    const article = await generateNewArticle();
+    const newArticle = await generateNewArticle();
 
     await homePage.gotoNewArticle();
     await newArticlePage.makeNewArticle(article.title, article.about, article.topic, article.tag);
@@ -135,5 +116,6 @@ test('Зарегистрированный пользователь может �
     await viewArticlePage.goUpdateMyArticle();
 
     await editArticlePage.updateArticle(newArticle.title, newArticle.about, newArticle.topic, newArticle.tag);
-    expect(await viewArticlePage.findMyTopic(newArticle.topic));
+    await expect(await viewArticlePage.findMyTopic()).toContainText(newArticle.topic);
+});
 });

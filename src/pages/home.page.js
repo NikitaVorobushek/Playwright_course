@@ -10,7 +10,7 @@ constructor(page) {
     }
 
     async getProfileName() {
-        return await this.profileBtn.textContent();
+        return this.profileBtn;
     }
 
     async goToSettings() {

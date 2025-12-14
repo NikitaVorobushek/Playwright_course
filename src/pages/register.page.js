@@ -22,7 +22,7 @@ export class RegisterPage {
         await this.passwordInput.click();
         await this.passwordInput.fill(password);
         
-        this.signupBtn.click();
+        await this.signupBtn.click();
     }
 
 }

@@ -12,11 +12,12 @@ export class ViewArticlePage {
         this.myComment = page.locator('.card .card-block .card-text');
 
         this.myArticleTopic = page.getByRole('paragraph');
+        this.myTopic = page.locator('.col-md-12').first();
     }
     
 // бизнесовые действия со страницей
     async checkMyArticle () {
-        await this.myArticleTopic;
+        return this.myArticleTopic;
     }
 
     async goUpdateMyArticle() {
@@ -31,11 +32,10 @@ export class ViewArticlePage {
     }
 
     async checkMyComment() {
-        const text = await this.myComment.textContent();
-        return text;
+        return this.myComment;
     }
 
-    async findMyTopic(text) {
-        await this.page.getByRole('heading', {name: text});
+    async findMyTopic() {
+        return this.myTopic;
     }
 }
