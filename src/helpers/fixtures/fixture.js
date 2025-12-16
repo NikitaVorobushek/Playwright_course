@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
 import { App } from '../../pages/app.page';
-//import { UserBuilder } from '../builders/index';
+import { UserBuilder } from '../builders/index';
 
 
 export const test = base.extend({
@@ -13,7 +13,7 @@ export const test = base.extend({
 
      },
 
-     // СЛой для работы с данными
+     // Слой для работы с данными
      //todo можно ли избавится от page
      registredUser : 
      async ({page}, use) => {

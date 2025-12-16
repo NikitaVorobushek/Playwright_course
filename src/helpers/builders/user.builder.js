@@ -1,12 +1,3 @@
-// import { faker } from '@faker-js/faker';
-
-// const user = {
-//     email: faker.internet.email({provider: 'qa.guru' }),
-//     name: faker.person.fullName(), // 'Allen Brown'
-//     password: faker.internet.password({ length: 10 }),
-//     method() {}
-// }
-
 import { faker } from '@faker-js/faker';
 
 export class UserBuilder {
