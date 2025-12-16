@@ -1,22 +1,28 @@
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
+import {HomePage} from '../src/pages/home.page';
+import {MainPage} from '../src/pages/main.page';
+import {RegisterPage} from '../src/pages/register.page';
 
-import { App } from '../src/pages/app.page';
-import { UserBuilder } from '../src/helpers/builders/user.builder';
+const user = {
+    email: faker.internet.email({provider: 'qa.guru' }),
+    name: faker.person.fullName(), // 'Allen Brown'
+    password: faker.internet.password({ length: 10 }),
+    method() {}
+}
 
 const url = 'https://realworld.qa.guru/';
 
-test.only('Регим юзера с мылом и паролем Page Object', async ({ page }) => {
-    //const {email, name, password} = user;
-    const user = new UserBuilder().withEmail().withName().withPassword().build();
+test('Пользователь может зарегистрироваться используя email и пароль Page Object', async ({ page }) => {
     const {email, name, password} = user;
-    const app = new App(page);
-    // const homePage = new HomePage(page);
-    // const mainPage = new MainPage(page);
-    // const registerPage = new RegisterPage(page);
+
+    const homePage = new HomePage(page);
+    const mainPage = new MainPage(page);
+    const registerPage = new RegisterPage(page);
     
-    await app.mainPage.open(url);
-    await app.mainPage.goToRegister();
-    await app.register.registration(name, email, password);
+    await mainPage.open(url);
+    await mainPage.gotoRegister();
+    await registerPage.register(name, email, password);
     
     // ========== ВАРИАНТ 1: Прямой доступ к locator ==========
     // ⚠️ ИСПОЛЬЗУЕМ ПОКА ТОЛЬКО ДЛЯ ТРЕНИРОВКИ - чтобы понять как работает auto-waiting
@@ -27,7 +33,7 @@ test.only('Регим юзера с мылом и паролем Page Object', a
     // 1. homePage.profileName - это page.locator('.dropdown-toggle') из конструктора
     // 2. expect() с locator автоматически ждет, пока элемент станет видимым и стабильным
     // 3. toContainText() проверяет, что текст элемента содержит user.name
-    await expect(homePage.profileBtn).toContainText(user.name);
+    await expect(homePage.profileName).toContainText(user.name);
     
     // ========== ВАРИАНТ 2: Через метод getProfileNameLocator() ==========
     // ✅ СОБЛЮДАЕТ ИНКАПСУЛЯЦИЮ - тест использует публичный метод, не знает о селекторе
@@ -40,6 +46,6 @@ test.only('Регим юзера с мылом и паролем Page Object', a
     // Преимущества:
     // - Если селектор изменится, нужно править только в одном месте (в Page Object)
     // - Тест не зависит от внутренней реализации (селектор скрыт)
-    await expect(app.homePage.getProfileName()).toContainText(user.name);
+    await expect(homePage.getProfileNameLocator()).toContainText(user.name);
 
 });

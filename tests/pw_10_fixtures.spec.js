@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../src/helpers/fixtures/fixture';
-//import * as allure from "allure-js-commons";
+import * as allure from "allure-js-commons";
 import { App } from '../src/pages/app.page';
 import { UserBuilder } from '../src/helpers/builders/index';
 
