@@ -9,7 +9,7 @@ constructor(page) {
         this.newArticleBtn = page.getByRole('link', { name: 'New Article' });
     }
 
-    async getProfileName() {
+    getProfileName() {
         return this.profileBtn;
     }
 

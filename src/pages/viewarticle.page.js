@@ -16,7 +16,7 @@ export class ViewArticlePage {
     }
     
 // бизнесовые действия со страницей
-    async checkMyArticle () {
+    checkMyArticle () {
         return this.myArticleTopic;
     }
 
@@ -35,7 +35,7 @@ export class ViewArticlePage {
         return this.myComment;
     }
 
-    async findMyTopic() {
+    findMyTopic() {
         return this.myTopic;
     }
 }

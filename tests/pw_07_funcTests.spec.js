@@ -70,7 +70,7 @@ test('Зарегистрированный пользователь может �
 
     await mainPage.goToLogin();
     await loginPage.login(user.email, newPassword);
-    await expect(await homePage.getProfileName()).toContainText(user.name);
+    await expect(homePage.getProfileName()).toContainText(user.name);
 });
 
 test('Зарегистрированный пользователь может создать новый пост', async ({ page }) => {
@@ -82,7 +82,7 @@ test('Зарегистрированный пользователь может �
 
     await homePage.gotoNewArticle();
     await newArticlePage.makeNewArticle(article.title, article.about, article.topic, article.tag);
-    await expect(await viewArticlePage.checkMyArticle()).toContainText(article.topic);
+    await expect(viewArticlePage.checkMyArticle()).toContainText(article.topic);
 });
 
 test('Зарегистрированный пользователь может оставить коммент к посту', async ({ page }) => {
@@ -97,7 +97,7 @@ test('Зарегистрированный пользователь может �
     await homePage.gotoNewArticle();
     await newArticlePage.makeNewArticle(article.title, article.about, article.topic, article.tag);
     await viewArticlePage.createNewComment(commentText);
-    await expect(await viewArticlePage.checkMyComment()).toContainText(commentText);
+    await expect(viewArticlePage.checkMyComment()).toContainText(commentText);
 });
 
 test('Зарегистрированный пользователь может отредактировать свой пост', async ({ page }) => {
@@ -116,6 +116,6 @@ test('Зарегистрированный пользователь может �
     await viewArticlePage.goUpdateMyArticle();
 
     await editArticlePage.updateArticle(newArticle.title, newArticle.about, newArticle.topic, newArticle.tag);
-    await expect(await viewArticlePage.findMyTopic()).toContainText(newArticle.topic);
+    await expect(viewArticlePage.findMyTopic()).toContainText(newArticle.topic);
 });
 });
