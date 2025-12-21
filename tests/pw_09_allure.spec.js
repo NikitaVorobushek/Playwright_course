@@ -5,8 +5,16 @@ import { UserBuilder } from '../src/helpers/builders/index';
 
 const url = 'https://realworld.qa.guru/';
 
-test.only('Регим юзера с email и пароль Page Object паттерны', async ({ page }) => {
-    await allure.tms("TMS-456", "Related TMS issue");
+/*
+Чтобы нормально отработал аллюр отчет
+1. Снести папку allure-report
+2. Снести папку allure-results
+3. (вариативно) Снести папку playwright-report
+4. Запустить тесты, затем запустить генератор allure, затем allure open
+*/
+
+test('Регим юзера с email и пароль Page Object паттерны', async ({ page }) => {
+    await allure.tms("TMS-456", "Related TMS issue"); //аля ссылка на жиру
 
     const user = new UserBuilder().withEmail().withName().withPassword().build();
 

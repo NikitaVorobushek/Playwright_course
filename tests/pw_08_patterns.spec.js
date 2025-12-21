@@ -21,8 +21,8 @@ test('Пользователь может зарегистрироваться �
     const registerPage = new RegisterPage(page);
     
     await mainPage.open(url);
-    await mainPage.gotoRegister();
-    await registerPage.register(name, email, password);
+    await mainPage.goToRegister();
+    await registerPage.registration(name, email, password);
     
     // ========== ВАРИАНТ 1: Прямой доступ к locator ==========
     // ⚠️ ИСПОЛЬЗУЕМ ПОКА ТОЛЬКО ДЛЯ ТРЕНИРОВКИ - чтобы понять как работает auto-waiting
@@ -33,7 +33,7 @@ test('Пользователь может зарегистрироваться �
     // 1. homePage.profileName - это page.locator('.dropdown-toggle') из конструктора
     // 2. expect() с locator автоматически ждет, пока элемент станет видимым и стабильным
     // 3. toContainText() проверяет, что текст элемента содержит user.name
-    await expect(homePage.profileName).toContainText(user.name);
+    await expect(homePage.profileBtn).toContainText(user.name);
     
     // ========== ВАРИАНТ 2: Через метод getProfileNameLocator() ==========
     // ✅ СОБЛЮДАЕТ ИНКАПСУЛЯЦИЮ - тест использует публичный метод, не знает о селекторе
@@ -46,6 +46,6 @@ test('Пользователь может зарегистрироваться �
     // Преимущества:
     // - Если селектор изменится, нужно править только в одном месте (в Page Object)
     // - Тест не зависит от внутренней реализации (селектор скрыт)
-    await expect(homePage.getProfileNameLocator()).toContainText(user.name);
+    await expect(homePage.getProfileName()).toContainText(user.name);
 
 });

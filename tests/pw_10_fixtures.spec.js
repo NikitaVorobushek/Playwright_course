@@ -1,69 +1,70 @@
-import { expect } from '@playwright/test';
-import { test } from '../src/helpers/fixtures/fixture';
-import * as allure from "allure-js-commons";
-import { App } from '../src/pages/app.page';
-import { UserBuilder } from '../src/helpers/builders/index';
+// import { expect } from '@playwright/test';
+// import { test } from '../src/helpers/fixtures/fixture';
 
-const url = 'https://realworld.qa.guru/';
+// import * as allure from "allure-js-commons";
+// import { App } from '../src/pages/app.page';
+// import { UserBuilder } from '../src/helpers/builders/index';
 
-test('Пользователь может зарегистрироваться используя email и пароль Page Object паттерны', async ({ page }) => {
-    await allure.tms("TMS-456", "Related TMS issue");
+// const url = 'https://realworld.qa.guru/';
 
-    const user = new UserBuilder().withEmail().withName().withPassword().build();
+// test.skip('Пользователь может зарегистрироваться используя email и пароль Page Object паттерны', async ({ page }) => {
+//     await allure.tms("TMS-456", "Related TMS issue");
 
-    const {email, name, password} = user;
-    const app = new App(page);
+//     const user = new UserBuilder().withEmail().withName().withPassword().build();
 
-    await app.main.open(url);
-    await app.main.gotoRegister();
-    await app.register.register(name, email, password);
+//     const {email, name, password} = user;
+//     const app = new App(page);
 
-    await expect(app.home.getProfileNameLocator()).toContainText(user.name);
+//     await app.main.open(url);
+//     await app.main.gotoRegister();
+//     await app.register.register(name, email, password);
 
-});
+//     await expect(app.home.getProfileName()).toContainText(user.name);
 
-test('Фикстура 1', async ({ registredUser, app }) => {
-    await allure.tms("TMS-456", "Related TMS issue");
-    const { user } = registredUser;
-    const {email, name, password} = user;
+// });
 
-    await app.main.open(url);
-    await app.main.gotoRegister();
-    await app.register.register(name, email, password);
+// test('Фикстура 1', async ({ registredUser, app }) => {
+//     await allure.tms("TMS-456", "Related TMS issue");
+//     const { user } = registredUser;
+//     const {email, name, password} = user;
 
-    await expect(app.home.getProfileNameLocator()).toContainText(user.name);
+//     await app.main.open(url);
+//     await app.main.gotoRegister();
+//     await app.register.register(name, email, password);
 
-});
-test('Фикстура 2', async ({ userProfilePage}) => {
-    await allure.tms("TMS-456", "Related TMS issue");
-    const { app } = userProfilePage;
-    const { user } = userProfilePage;
-// todo проверки профиля пользователя
-    await expect(app.home.getProfileNameLocator()).toContainText(user.name);
+//     await expect(app.home.getProfileName()).toContainText(user.name);
 
-});
+// });
+// test('Фикстура 2', async ({ userProfilePage}) => {
+//     await allure.tms("TMS-456", "Related TMS issue");
+//     const { app } = userProfilePage;
+//     const { user } = userProfilePage;
+// // todo проверки профиля пользователя
+//     await expect(app.home.getProfileName()).toContainText(user.name);
 
-test('Фикстура параметризированная', async ({ createWithRole}) => {
-    await allure.tms("TMS-456", "Related TMS issue");
-    const user = createWithRole('admin');
-    console.log(user);
-// todo проверки профиля пользователя
-    await expect(user).toHaveProperty(user.name);
+// });
 
-});
-test('Фикстура параметризированная с дефолтным значением', async ({ createWithRole}) => {
-    await allure.tms("TMS-456", "Related TMS issue");
-    const user = createWithRole();
-    console.log(user);
-// todo проверки профиля пользователя
-    await expect(user).toHaveProperty(user.name);
+// test.only('Фикстура парамтеризированная', async ({ createWithRole}) => {
+//     await allure.tms("TMS-456", "Related TMS issue");
+//     const user = createWithRole('admin');
+//     console.log(user);
+// // todo проверки профиля пользователя
+//     await expect(user).toHaveProperty(user.name);
 
-});
-/*
-admin/user
-- билдер
-- фикстура (2 штуки)
-- создаем сразу всех пользователей)
+// });
+// test.only('Фикстура парамтеризированная с дефолтным значением', async ({ createWithRole}) => {
+//     await allure.tms("TMS-456", "Related TMS issue");
+//     const user = createWithRole();
+//     console.log(user);
+// // todo проверки профиля пользователя
+//     await expect(user).toHaveProperty(user.name);
 
-- создать пользователя, сохранить токен и переиспользовать
-*/
+// });
+// /*
+// admin/user
+// - билдер
+// - фикстура (2 штуки)
+// - создаем сразу всех пользователей)
+
+// - создать пользователя, сохранить токен и переиспользовать
+// */

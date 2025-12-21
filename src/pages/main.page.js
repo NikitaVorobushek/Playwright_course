@@ -1,3 +1,5 @@
+import { test } from '@playwright/test';
+
 export class MainPage {
 // техническое описание страницы
 
@@ -10,15 +12,21 @@ export class MainPage {
 
 // бизнесовые действия со страницей
     async goToRegister() {
-        this.signUpLink.click();
+        return test.step ('Переход на страницу регистрации', async (step) => {
+            this.signUpLink.click();
+        })
     }
 
     async goToLogin() {
+        return test.step ('Клик по кнопке Логина', async (step) => {
         await this.loginLink.click();
+        })
     }
 
     async open(url) {
+        return test.step (`Переход на страницу ${url}`, async (step) => {
         await this.page.goto(url);
+        })
     }
 
 }
