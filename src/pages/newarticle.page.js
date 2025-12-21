@@ -1,3 +1,5 @@
+import { test } from '@playwright/test';
+
 export class NewArticlePage {
 
     constructor(page) {
@@ -12,7 +14,7 @@ export class NewArticlePage {
     }
 
     async makeNewArticle (title, about, topic, tag) {
-
+        return test.step ('Заполнение формы новой заметки', async (step) => {
         await this.ArticleTitle.click();
         await this.ArticleTitle.fill(title);
 
@@ -26,5 +28,6 @@ export class NewArticlePage {
         await this.ArticleTag.fill(tag);
 
         await this.publishArticleBtn.click();
+        })
     }
 }

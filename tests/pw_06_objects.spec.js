@@ -24,7 +24,7 @@ test('Регистрация юзера с объектами', async ({ page })
     await mainPage.goToRegister();
     await registerPage.registration(name, email, password);
     // v 1.0 //
-    await expect(homePage.profileName).toContainText(user.name);
+    await expect(homePage.getProfileName).toContainText(user.name);
 
 });
 

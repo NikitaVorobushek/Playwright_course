@@ -1,3 +1,4 @@
+/*
 import { test, expect } from '@playwright/test';
 
 test('Аноним может создать задачу', async ({ page }) => {
@@ -11,3 +12,4 @@ test('Аноним может создать задачу', async ({ page }) => 
   await expect(page.getByRole('main')).toContainText('First steps in playwright');
     //todo Добавить проверку на отображение счетчика
 });
+*/

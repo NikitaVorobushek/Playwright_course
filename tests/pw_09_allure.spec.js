@@ -10,7 +10,9 @@ const url = 'https://realworld.qa.guru/';
 1. Снести папку allure-report
 2. Снести папку allure-results
 3. (вариативно) Снести папку playwright-report
-4. Запустить тесты, затем запустить генератор allure, затем allure open
+4. Запустить тесты npm t
+5. Сгенерить аллюр-отчет npx allure generate
+6. Открыть аллюр-отчет npx allure open
 */
 
 test('Регим юзера с email и пароль Page Object паттерны', async ({ page }) => {
