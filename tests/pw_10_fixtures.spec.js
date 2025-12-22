@@ -23,7 +23,7 @@ test.skip('Пользователь может зарегистрировать�
 
 });
 
-test.only('Фикстура 1', async ({ registredUser, app }) => {
+test('Фикстура 1', async ({ registredUser, app }) => {
     await allure.tms("TMS-456", "Related TMS issue");
     const { user } = registredUser;
     const {email, name, password} = user;
@@ -44,7 +44,7 @@ test('Фикстура 2', async ({ userProfilePage}) => {
 
 });
 
-test.skip('Фикстура парамтеризированная', async ({ createWithRole}) => {
+test.only('Фикстура параметризированная', async ({ createWithRole}) => {
     await allure.tms("TMS-456", "Related TMS issue");
     const user = createWithRole('admin');
     console.log(user);
@@ -52,7 +52,7 @@ test.skip('Фикстура парамтеризированная', async ({ cr
     await expect(user).toHaveProperty(user.name);
 
 });
-test.skip('Фикстура парамтеризированная с дефолтным значением', async ({ createWithRole}) => {
+test.only('Фикстура параметризированная с дефолтным значением', async ({ createWithRole}) => {
     await allure.tms("TMS-456", "Related TMS issue");
     const user = createWithRole();
     console.log(user);

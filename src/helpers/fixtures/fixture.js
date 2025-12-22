@@ -31,7 +31,7 @@ export const test = base.extend({
          await use ({app, user});
       },
 
-      createWithRole: async ({}, use) => {
+      createWithRole: async ({}, use) => { //параметризированная функция
          const user = (role = 'user') => ({
             name: 'Test User',
             role: role
