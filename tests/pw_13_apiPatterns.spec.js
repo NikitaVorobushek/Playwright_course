@@ -5,7 +5,7 @@ import { ChallengerService, ChallengesService, TodosService } from "../src/servi
 let token;
 const url = 'https://apichallenges.eviltester.com/';
 
-test.describe.only('Challenge with Services', () => {
+test.describe('Challenge with Services', () => {
 
     test.beforeAll(async ({request}, testinfo) => {
         //facade
